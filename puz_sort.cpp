@@ -1,21 +1,22 @@
 #include "head.h"
-void P_Sort ( char *Mass, int n )
+void P_Sort (int* Mass, int n) //!< сортировка пузырьком
 {
-	char TMP;
-	int i;
-	bool change = 0;
-	do
-	{
-		change = 0;
-		for( i = 1; i < n - 1; i++ )
-		{
-			if( Mass[ i ] >  Mass[ i + 1 ] )
-			{
-				TMP = Mass[ i + 1 ];
-				Mass[ i + 1 ] = Mass[ i ];
-				Mass[ i ] = TMP;
-				change = 1;
-			}
-		}
-	}while( change );
+ int temp = 0; //!< временная переменная для хранения элемента массива
+ bool exit = false; //!< болевая переменная для выхода из цикла, если массив отсортирован
+ 
+ while (!exit) //!< пока массив не отсортирован
+ {
+  exit = true;
+  for (int int_counter = 0; int_counter < (n - 1); int_counter++) // !< внутренний цикл
+    //!< сортировка пузырьком по возрастанию - знак >
+    //!< сортировка пузырьком по убыванию - знак <
+    if (Mass[int_counter] > Mass[int_counter + 1]) // !<сравниваем два соседних элемента
+    {
+     //!< выполняем перестановку элементов массива
+     temp = Mass[int_counter];
+     Mass[int_counter] = Mass[int_counter + 1];
+     Mass[int_counter + 1] = temp;
+     exit = false; //!< на очередной итерации была произведена перестановка элементов
+    }
+ }
 }
